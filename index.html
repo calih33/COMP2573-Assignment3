@@ -71,23 +71,25 @@
         </div>
         </div>
 
-        <div class="modal fade" id="loseModal" tabindex="-1" aria-labelledby="loseModalLabel" aria-hidden="true">
+        <div class="modal fade" id="loseModal" aria-labelledby="loseModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="loseModalLabel">Gamer Over!</h5>
+                <h5 class="modal-title" id="loseModalLabel">Time's Up!</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                You lost the game! 
-                <img id="sad" src="sad.gif" alt="Sad Image">
+                Game Over!
+                <img id="sad" src="sad.gif" alt="sad Image">
             </div>
             <div class="modal-footer">
-                <button type="button" id="playAgainBtn" class="btn btn-primary" data-bs-dismiss="modal">Play Again</button>
+                <button type="button" id="playAgainLoseBtn" class="btn btn-primary" data-bs-dismiss="modal">Play Again</button>
             </div>
             </div>
         </div>
         </div>
+
+
 
         <div id="themeBtn" class="btn-group d-flex justify-content-center mt-3 col-auto gap-2">
             <button id="lightBtn" class="btn btn-primary">Light</button>

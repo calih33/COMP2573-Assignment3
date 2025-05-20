@@ -53,7 +53,6 @@ function startTimer() {
 
     if (elapsed >= timeLimit) {
       clearInterval(timer);
-        document.getElementById('finalScore').textContent = score;
         var loseModal = new bootstrap.Modal(document.getElementById('loseModal'));
         loseModal.show();
     }
@@ -201,7 +200,6 @@ cards[n].addEventListener('click', function () {
     if (matched === cardCount / 2) {
       clearInterval(timer);
       setTimeout(function () {
-        document.getElementById('finalScore').textContent = score;
         var winModal = new bootstrap.Modal(document.getElementById('winModal'));
         winModal.show();
       }, 500);
