@@ -60,9 +60,26 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                You won the game! Your final score is: <span id="finalScore"></span>
+                You won the game! 
                 <img id="celebration" src="celebration.gif" alt="Celebration Image">
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="playAgainBtn" class="btn btn-primary" data-bs-dismiss="modal">Play Again</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="modal fade" id="loseModal" tabindex="-1" aria-labelledby="loseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loseModalLabel">Gamer Over!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                You lost the game! 
+                <img id="sad" src="sad.gif" alt="Sad Image">
             </div>
             <div class="modal-footer">
                 <button type="button" id="playAgainBtn" class="btn btn-primary" data-bs-dismiss="modal">Play Again</button>
