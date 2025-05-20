@@ -53,7 +53,9 @@ function startTimer() {
 
     if (elapsed >= timeLimit) {
       clearInterval(timer);
-      alert('Time is up! Your score is ' + score + '.');
+        document.getElementById('finalScore').textContent = score;
+        var loseModal = new bootstrap.Modal(document.getElementById('loseModal'));
+        loseModal.show();
     }
   }, 1000);
 }
@@ -161,53 +163,59 @@ function startGame() {
   // event listeners to cards
   var cards = gameDisplay.querySelectorAll('.card');
   for (var n = 0; n < cards.length; n++) {
-    cards[n].addEventListener('click', function() {
-      if (this.classList.contains('matched') || this.classList.contains('flip') || flippedChances) {
-        return;
-      }
+cards[n].addEventListener('click', function () {
+  if (
+    this.classList.contains('matched') || 
+    this.classList.contains('flip') || 
+    flippedChances || 
+    firstCard && secondCard || 
+    firstCard === this
+  ) {
+    return;
+  }
 
-      flipped++;
-      updateStats();
+  this.classList.add('flip');
+  flipped++;
+  updateStats();
 
-      this.classList.add('flip');
+  if (!firstCard) {
+    firstCard = this;
+    return;
+  }
 
-      if (firstCard === null) {
-        firstCard = this;
-      } else {
-        secondCard = this;
+  secondCard = this;
 
-        var firstImg = firstCard.querySelector('.front_face').src;
-        var secondImg = secondCard.querySelector('.front_face').src;
+  var firstImg = firstCard.querySelector('.front_face').src;
+  var secondImg = secondCard.querySelector('.front_face').src;
 
-        if (firstImg === secondImg) {
-          firstCard.classList.add('matched');
-          secondCard.classList.add('matched');
-          matched++;
-          score++;
-          updateStats();
+  if (firstImg === secondImg) {
+    firstCard.classList.add('matched');
+    secondCard.classList.add('matched');
+    matched++;
+    score++;
+    updateStats();
 
-          firstCard = null;
-          secondCard = null;
+    firstCard = null;
+    secondCard = null;
 
-          // show the modal with the score
-          if (matched === cardCount / 2) {
-            clearInterval(timer);
-            setTimeout(function() {
-              document.getElementById('finalScore').textContent = score;
-              var winModal = new bootstrap.Modal(document.getElementById('winModal'));
-              winModal.show();
-            }, 500);
-          }
-        } else {
-          setTimeout(function() {
-            firstCard.classList.remove('flip');
-            secondCard.classList.remove('flip');
-            firstCard = null;
-            secondCard = null;
-          }, 800);
-        }
-      }
-    });
+    if (matched === cardCount / 2) {
+      clearInterval(timer);
+      setTimeout(function () {
+        document.getElementById('finalScore').textContent = score;
+        var winModal = new bootstrap.Modal(document.getElementById('winModal'));
+        winModal.show();
+      }, 500);
+    }
+  } else {
+    setTimeout(function () {
+      firstCard.classList.remove('flip');
+      secondCard.classList.remove('flip');
+      firstCard = null;
+      secondCard = null;
+    }, 800);
+  }
+});
+
   }
 }
 
@@ -229,6 +237,10 @@ function setTheme(theme) {
 document.getElementById('lightBtn').onclick = function() {
   setTheme('light');
 };
+document.getElementById('playAgainBtn').onclick = function () {
+  startGame();
+};
+
 document.getElementById('darkBtn').onclick = function() {
   setTheme('dark');
 };
