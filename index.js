@@ -238,6 +238,9 @@ document.getElementById('lightBtn').onclick = function() {
 document.getElementById('playAgainBtn').onclick = function () {
   startGame();
 };
+document.getElementById('playAgainLoseBtn').onclick = function () {
+  startGame();
+};
 
 document.getElementById('darkBtn').onclick = function() {
   setTheme('dark');
